@@ -323,3 +323,4 @@ terraform.rc
 
 # End of https://www.toptal.com/developers/gitignore/api/intellij+all,terraform,python
 
+*.lock.hcl

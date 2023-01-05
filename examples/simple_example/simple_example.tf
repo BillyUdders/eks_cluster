@@ -2,18 +2,15 @@ variable "account_id" {
   default = "578258650485"
 }
 
-provider "aws" {}
+provider "aws"{}
 
 provider "kubernetes" {
   host                   = module.cluster.cluster_endpoint
   cluster_ca_certificate = base64decode(module.cluster.ca_cert)
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = [
-      "eks", "get-token", "--cluster-name", module.cluster.eks_cluster_name, "--role-arn",
-      "arn:aws:iam::${var.account_id}:role/OrganizationAccountAccessRole"
-    ]
-    command = "aws"
+    args        = ["eks", "get-token", "--cluster-name", module.cluster.eks_cluster_name]
+    command     = "aws"
   }
 }
 
@@ -23,11 +20,8 @@ provider "helm" {
     cluster_ca_certificate = base64decode(module.cluster.ca_cert)
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
-      args        = [
-        "eks", "get-token", "--cluster-name", module.cluster.eks_cluster_name, "--role-arn",
-        "arn:aws:iam::${var.account_id}:role/OrganizationAccountAccessRole"
-      ]
-      command = "aws"
+      args        = ["eks", "get-token", "--cluster-name", module.cluster.eks_cluster_name]
+      command     = "aws"
     }
   }
 }
