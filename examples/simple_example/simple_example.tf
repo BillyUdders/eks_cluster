@@ -49,6 +49,6 @@ module "cluster" {
 
 module "addons" {
   source         = "../../addons"
-  eks_cluster_id = module.cluster.eks_cluster_id
+  eks_cluster_id = module.cluster.eks_cluster_name
   depends_on     = [module.cluster]
 }
