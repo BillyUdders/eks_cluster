@@ -1,5 +1,4 @@
 variable "account_id" {
-  default = "578258650485"
 }
 
 provider "aws"{}
